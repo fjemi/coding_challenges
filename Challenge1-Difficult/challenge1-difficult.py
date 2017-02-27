@@ -37,7 +37,7 @@ def inputHiLow(message):
     while True:
         userInput = input(message).upper()
         
-        if (userInput.upper() == "H" or userInput.upper() == "L"):
+        if (userInput.upper() in ["H", "L"]):
             # print (userInput)
             return (userInput)
             break
@@ -91,11 +91,3 @@ while True:
             lownumber = computerguess
         else:
             highnumber = computerguess
-
-        
-
-
-# In[ ]:
-
-
-
