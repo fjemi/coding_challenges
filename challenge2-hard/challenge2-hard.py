@@ -119,7 +119,7 @@ def stopWatch():
                 print ("Stop time - ", stoptime)
                 print ("Elapsed Time (h:m:s) -", eTime(starttime, stoptime))
             
-            # split stopwatch
+            # split stopwatch FUNCTION DOESN'T WORK
             else: #userinput.lower() == "split":
                 splitbool = 1
                 splittime = datetime.now()
