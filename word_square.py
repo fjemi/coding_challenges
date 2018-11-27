@@ -46,14 +46,8 @@ square_check(list2)
 square_check(sort_list(list2))
 
 per = tuple(permutations(list3, len(list3[0])))
-p_list = []
-count1 = 0
-count2 = 0
-
-'''for i in per:
-	if square_check(i):
-		print('hi')'''
-	#print('Word Square: %s\n' % square_check(i))
-		
+  
+for item in per:
+  square_check(item)
 
 
