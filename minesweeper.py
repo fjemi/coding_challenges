@@ -1,3 +1,9 @@
+'''
+Minesweeper
+
+https://techdevguide.withgoogle.com/resources/coding-question-minesweeper/#!
+'''
+
 import numpy as np
 import random
 
@@ -40,10 +46,21 @@ class MineField(object):
         m_column = random.randint(0, self.column) - 1
 
         if m_field[m_row][m_column] == '-':
-          m_field[m_row][m_column] = 1
+          m_field[m_row][m_column] = 'X'
           empty = True
   
     return m_field
+    
+  def click_field(self, c_row, c_column):
+    field = self.field()
+    c_field = self.mine_field()
+    
+    if c_field[c_row][c_column] != 'X':
+      field[c_row][c_column] = ' '
+      return ('Please make another selection', field)
+    else:
+      c_field[c_row][c_column] = 'O'
+      return  ('You selected a mine', c_field)
 
   
   def p_field(self):
@@ -53,6 +70,7 @@ class MineField(object):
   #@call_count
   def click(self, c_row, c_column):
     print(self.field())
+    print(self.m_field()[c_row][c_column])
     return 'hi'
     
 
@@ -64,4 +82,6 @@ a = MineField(m, n, random.randint(1, m * n))
 # Print the field
 print('Blank field: \n', a.field(), '\n')
 print('Mine field: \n', a.mine_field())
-print(a.click(1,1))
+clicked = a.click_field(1,1) # loop clicks unitl a mine is selected or the matrix doesn't contain any '-'
+print(clicked[0])
+print(clicked[1])
