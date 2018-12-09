@@ -1,0 +1,4 @@
+# .gitignore
+# Use to ignore folder(s) for git statuses/commits
+
+env
