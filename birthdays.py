@@ -2,31 +2,31 @@
 import json
 import pandas as pd
 # class object models
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, asdict
 from typing import List, Dict
-from dataclasses_json import dataclass_json
+#from dataclasses_json import dataclass_json
 # datetime
 import calendar
 from dateutil.parser import parse
 from datetime import datetime, date
 
 
-@dataclass_json
+#@dataclass_json
 @dataclass(order=True)
 class Date:
     '''Object model for storing date information'''
-    
     # attributes
     year: int   
     month: int
     day: int
     
   
-@dataclass_json
+#@dataclass_json
 @dataclass(order=True)
 class Birthdays:
     '''Object model for keeping track of birthdays'''
-    birthdays : List[Date]
+    _input: Date
+    birthdays : List[Date] = field(default_factory=list)
     created: datetime = field(default_factory=lambda: datetime.utcnow())
     runtime: int = None
     error: str = None
@@ -38,10 +38,10 @@ class Birthdays:
             if self.birthdays == []:
                 raise Exception('Error: An empty list was passed as an arguement')
             
-            # iterate over years from birth. determine the day of birthdates
             a = self.birthdays[0].year
             b = self.created.year
-            for i in range (a, b + 1):
+            
+            for i in range (a, b + 1): # iterate over years from birth. determine the day of birthdates
                 print(i, self.birthdays[0].month, self.birthdays[0].day)
             
             pass
@@ -65,8 +65,8 @@ class Birthday():
     def calculate(data):
         '''Determine the day associated with each birthday from the day of birth to the current year'''
         try:
-            # List to store the birthdays
-            birthdays = []
+            
+            birthdays = [] # List to store the birthdays
 
             end_year = int(datetime.utcnow().strftime('%Y'))
             weekends = {}
@@ -95,18 +95,21 @@ class Birthday():
            
 
 if __name__ == '__main__':
-    data = {'month': 5, 'day': 7, 'year': 1985}
-    bday = Birthday.calculate(data)
+    #data = {'month': 5, 'day': 7, 'year': 1985}
+    #bday = Birthday.calculate(data)
     #print(bday)
-    data = {'month': 11, 'day': 30, 'year': 1992}
-    bday = Birthday.calculate(data)
+    #data = {'month': 11, 'day': 30, 'year': 1992}
+    #bday = Birthday.calculate(data)
     #print(bday)
     
     
     d = Date(2015, 5, 6)
-    print(d.to_json())
+    d = asdict(d))          # convert 
+
     
-    b = Birthdays([Date(2015, 5, 6)])
+    b = Birthdays(d.to_json())
     print(b)
     #b = Birthdays([])
     #print(b)
+    
+    output = [{date: datetime, day: str}, {}]
