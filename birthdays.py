@@ -4,6 +4,7 @@ import pandas as pd
 # class object models
 from dataclasses import dataclass, field, asdict
 from typing import List, Dict
+#from types import SimpleNamespace
 #from dataclasses_json import dataclass_json
 # datetime
 import calendar
@@ -13,20 +14,37 @@ from datetime import datetime, date
 
 #@dataclass_json
 @dataclass(order=True)
-class Date:
-    '''Object model for storing date information'''
+class Data:
+    '''Object model for storing input/output data'''
     # attributes
+    birthdate: None
+    output: None
+
+    
+
+#@dataclass_json
+@dataclass(order=True)
+class Birthdate:
+    '''Object model for storing input data'''
     year: int   
     month: int
     day: int
+    
+    
+#@dataclass_json
+@dataclass(order=True)
+class Birthdays:
+    '''Object model for storing output data'''
+    date: datetime = None  
+    day: str = None
     
   
 #@dataclass_json
 @dataclass(order=True)
 class Birthdays:
     '''Object model for keeping track of birthdays'''
-    _input: Date
-    birthdays : List[Date] = field(default_factory=list)
+    birthdate: Dict
+    birthdays: List[Birthdays] = field(default_factory=list)
     created: datetime = field(default_factory=lambda: datetime.utcnow())
     runtime: int = None
     error: str = None
@@ -34,23 +52,36 @@ class Birthdays:
     
     def __post_init__(self):
         '''Perform tasks after object initialization'''
+        
         try:
-            if self.birthdays == []:
-                raise Exception('Error: An empty list was passed as an arguement')
+            if self.birthdate == None:
+                raise Exception('Error: No data passed to the class')
             
-            a = self.birthdays[0].year
-            b = self.created.year
+            # start/end year to iterate through
+            a = self.birthdate['year']
+            b = int(self.created.strftime('%Y'))
             
-            for i in range (a, b + 1): # iterate over years from birth. determine the day of birthdates
-                print(i, self.birthdays[0].month, self.birthdays[0].day)
-            
-            pass
-    
+            # List the birthdates since the original
+            for i in range (a, b + 1):                 
+                _date = date(i, self.birthdate['month'], self.birthdate['day'])
+                weekday = _date.strftime('%a')
+                data = {'date': _date, 'weekday': weekday}
+                self.birthdays.append(data)
+                
+            for item in self.birthdays:
+                # Convert the dictionary to 
+                #item = SimpleNamespace(**item)
+                print(item)
+
         except Exception as e:
             self.error = str(e)
     
         finally:
+            # Set function runtime
             self.runtime = (datetime.utcnow() - self.created).total_seconds()
+            
+    #def get():
+        
     
 
 class Birthday():
@@ -95,21 +126,10 @@ class Birthday():
            
 
 if __name__ == '__main__':
-    #data = {'month': 5, 'day': 7, 'year': 1985}
-    #bday = Birthday.calculate(data)
-    #print(bday)
-    #data = {'month': 11, 'day': 30, 'year': 1992}
-    #bday = Birthday.calculate(data)
-    #print(bday)
-    
-    
-    d = Date(2015, 5, 6)
-    d = asdict(d))          # convert 
+    b = Birthdate(1985, 5, 7)
+    # convert dataclass to a dictionary
+    b = asdict(b)          
 
-    
-    b = Birthdays(d.to_json())
+    b = Birthdays(b)
+    b = asdict(b)
     print(b)
-    #b = Birthdays([])
-    #print(b)
-    
-    output = [{date: datetime, day: str}, {}]
