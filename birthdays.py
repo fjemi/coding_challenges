@@ -5,14 +5,12 @@ import pandas as pd
 from dataclasses import dataclass, field, asdict
 from typing import List, Dict
 #from types import SimpleNamespace
-#from dataclasses_json import dataclass_json
-# datetime
+# date/time
 import calendar
 from dateutil.parser import parse
 from datetime import datetime, date
 
 
-#@dataclass_json
 @dataclass(order=True)
 class Data:
     '''Object model for storing input/output data'''
@@ -21,8 +19,6 @@ class Data:
     output: None
 
     
-
-#@dataclass_json
 @dataclass(order=True)
 class Birthdate:
     '''Object model for storing input data'''
@@ -31,7 +27,6 @@ class Birthdate:
     day: int
     
     
-#@dataclass_json
 @dataclass(order=True)
 class Birthdays:
     '''Object model for storing output data'''
@@ -39,7 +34,6 @@ class Birthdays:
     day: str = None
     
   
-#@dataclass_json
 @dataclass(order=True)
 class Birthdays:
     '''Object model for keeping track of birthdays'''
