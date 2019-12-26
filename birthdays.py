@@ -12,19 +12,16 @@ from datetime import datetime, date
 
 
 @dataclass(order=True)
-class Data:
-    '''Object model for storing input/output data'''
-    # attributes
-    birthdate: None
-    output: None
-
-    
-@dataclass(order=True)
 class Birthdate:
     '''Object model for storing input data'''
     year: int   
     month: int
     day: int
+    
+    
+    def __post_init__(self):
+        ''''''
+        pass
     
     
 @dataclass(order=True)
@@ -35,10 +32,11 @@ class Birthdays:
     
   
 @dataclass(order=True)
-class Birthdays:
+class Model:
     '''Object model for keeping track of birthdays'''
     birthdate: Dict
     birthdays: List[Birthdays] = field(default_factory=list)
+    count: Dict[str, int] = field(default_factory=dict)
     created: datetime = field(default_factory=lambda: datetime.utcnow())
     runtime: int = None
     error: str = None
@@ -59,71 +57,40 @@ class Birthdays:
             for i in range (a, b + 1):                 
                 _date = date(i, self.birthdate['month'], self.birthdate['day'])
                 weekday = _date.strftime('%a')
+                _date = _date.strftime('%G%m%d')
                 data = {'date': _date, 'weekday': weekday}
                 self.birthdays.append(data)
                 
-            for item in self.birthdays:
-                # Convert the dictionary to 
-                #item = SimpleNamespace(**item)
-                print(item)
-
+                # Use a dictionary to keep count of days
+                if weekday in self.count.keys(): 
+                    self.count[weekday] = self.count[weekday] + 1
+                else:
+                    self.count[weekday] = 1
+                    
         except Exception as e:
             self.error = str(e)
     
         finally:
             # Set function runtime
             self.runtime = (datetime.utcnow() - self.created).total_seconds()
+            # Convert datetime to string. Datetime is not JSON serializable
+            self.created = self.created.strftime('%Y%m%d.%H%M%S')
             
-    #def get():
+            
+    def get_count(self):
+        '''Returns weekday counts in JSON format'''
+        count = self.count
         
-    
-
-class Birthday():
-    '''Class that determines the days that a person's brithday has fallen on from birth'''
-    
-    def __init__(self, data):
-        '''Initialize the class.'''
-        self.data = data
-        
-        
-    @staticmethod
-    def calculate(data):
-        '''Determine the day associated with each birthday from the day of birth to the current year'''
-        try:
-            
-            birthdays = [] # List to store the birthdays
-
-            end_year = int(datetime.utcnow().strftime('%Y'))
-            weekends = {}
-            
-            # IterateBackup_ through the current/birth years and set the birth date/day
-            for year in range(data['year'], end_year):
-                birthdate = date(year, data['month'], data['day']) 
-                birthday = birthdate.strftime('%A')
-                # Convert to a string since dates are not serializable JSON objects
-                birthdate = birthdate.utcnow()
-                birthdays.append({'birthdate': birthdate, 'birthday': birthday})
-                
-                # Count the number of birthdays falling on a weekend
-                if birthday in weekends.keys():
-                    weekends[birthday] = weekends[birthday] + 1
-                else:
-                    weekends[birthday] = 1
-                
-            data['birthdays'] = birthdays
-            data['weekends'] = weekends
-            
-        except Exception as e:
-            data['error'] = e.__str__()
-            
-        return json.dumps(data)
+        return json.dumps(count, indent=2)
            
 
 if __name__ == '__main__':
     b = Birthdate(1985, 5, 7)
-    # convert dataclass to a dictionary
+    # Convert class object to dictionary
     b = asdict(b)          
 
-    b = Birthdays(b)
-    b = asdict(b)
-    print(b)
+    m = Model(b)
+    d = asdict(m)
+    # Convert dictionary object to JSON
+    print(json.dumps(d, indent=2))
+    
