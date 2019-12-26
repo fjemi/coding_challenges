@@ -1,6 +1,5 @@
 """
-Determine the a person birthdates from birth to the current date, 
-and the weekdays that those birthdates fall on.
+Determine the date and day of a person's birthdays from birth to the current date
 """
 
 
@@ -65,7 +64,7 @@ class Model:
     def __post_init__(self):
         '''Perform tasks after object initialization'''
         try:
-            if self.birthdate == None:
+            if len(self.birthdate) == 0:
                 raise Exception('Error: No data passed to the class')
                 
             # Years to iterate through
@@ -89,7 +88,7 @@ class Model:
         except Exception as e:
             # Set variables to None on error
             for key in vars(self).keys():
-                if key == 'created':
+                if key != 'created':
                     vars(self)[key] == None
                     
             self.error = str(e)
@@ -101,18 +100,18 @@ class Model:
             self.created = self.created.strftime('%Y%m%d.%H%M%S')
             
             
-    def get_count(self):
-        '''Returns weekday counts in JSON format'''
-        count = self.count
-        
-        return json.dumps(count, indent=2)
+    def get_var(self, name):
+        '''Returns data of a class variable in JSON format'''  
+        # Check if var name is valid
+        var = None
+        if name in vars(self).keys():
+            var = vars(self)[name]
+        return json.dumps({name: var}, indent=2)
            
 
 if __name__ == '__main__':
     # data
-    b = [Birthdate(2009, 5, 1),
-         Birthdate(2009, 5, 99)
-         ]
+    b = [Birthdate(2009, 5, 1), Birthdate(2009, 5, 99)]
     # Convert class object to dictionary
     for data in b:
         data = asdict(data)
@@ -121,4 +120,6 @@ if __name__ == '__main__':
         d = asdict(m)
         # Convert dictionary object to JSON
         print(json.dumps(d, indent=2))
+        # Get a specific class variable
+        print(m.get_var('runtime'))
     
