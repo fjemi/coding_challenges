@@ -1,12 +1,17 @@
+"""
+Determine the a person birthdates from birth to the current date, 
+and the weekdays that those birthdates fall on.
+"""
+
+
 # data analysis
 import json
 import pandas as pd
 # class object models
 from dataclasses import dataclass, field, asdict
 from typing import List, Dict
-#from types import SimpleNamespace
 # date/time
-import calendar
+from calendar import monthrange
 from dateutil.parser import parse
 from datetime import datetime, date
 
@@ -18,10 +23,25 @@ class Birthdate:
     month: int
     day: int
     
-    
     def __post_init__(self):
-        ''''''
-        pass
+        '''Validate data after initilization'''
+        validator = {
+            # float('inf') == positive inifinity
+            'year': [0, 'inf'], 
+            'month': [1, 12],
+            # Fist/last day of a given year (y) and month (m)
+            'day': lambda y, m: [1, monthrange(y, m)[1]]
+        }
+        
+        # Iterate over class instance variables
+        for key in vars(self).keys():
+            result = validator[key]
+            if key == 'day':
+                result = validator[key](vars(self)['year'], vars(self)['month'])
+
+            # Validate variables
+            if result[0] > vars(self)[key] or vars(self)[key] > float(result[1]):
+                vars(self)[key] = None
     
     
 @dataclass(order=True)
@@ -44,12 +64,11 @@ class Model:
     
     def __post_init__(self):
         '''Perform tasks after object initialization'''
-        
         try:
             if self.birthdate == None:
                 raise Exception('Error: No data passed to the class')
-            
-            # start/end year to iterate through
+                
+            # Years to iterate through
             a = self.birthdate['year']
             b = int(self.created.strftime('%Y'))
             
@@ -68,6 +87,11 @@ class Model:
                     self.count[weekday] = 1
                     
         except Exception as e:
+            # Set variables to None on error
+            for key in vars(self).keys():
+                if key == 'created':
+                    vars(self)[key] == None
+                    
             self.error = str(e)
     
         finally:
@@ -85,12 +109,16 @@ class Model:
            
 
 if __name__ == '__main__':
-    b = Birthdate(1985, 5, 7)
+    # data
+    b = [Birthdate(2009, 5, 1),
+         Birthdate(2009, 5, 99)
+         ]
     # Convert class object to dictionary
-    b = asdict(b)          
+    for data in b:
+        data = asdict(data)
 
-    m = Model(b)
-    d = asdict(m)
-    # Convert dictionary object to JSON
-    print(json.dumps(d, indent=2))
+        m = Model(data)
+        d = asdict(m)
+        # Convert dictionary object to JSON
+        print(json.dumps(d, indent=2))
     
