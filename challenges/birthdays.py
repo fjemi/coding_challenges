@@ -58,7 +58,7 @@ class Model:
     count: Dict[str, int] = field(default_factory=dict)
     created: datetime = field(default_factory=lambda: datetime.utcnow())
     runtime: int = None
-    error: str = None
+    error: str = field(init=False)
     
     
     def __post_init__(self):
