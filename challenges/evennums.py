@@ -1,5 +1,5 @@
 """
-Model to determine the number of even integers between two numbers a,b 
+Determine the number of even integers between two numbers a,b 
 """
 
 # data object modeling
@@ -10,6 +10,7 @@ import time
 from datetime import datetime
 # data storage
 import json
+
 
 @dataclass
 class Input:
