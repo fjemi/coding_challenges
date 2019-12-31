@@ -10,6 +10,8 @@ import time
 from datetime import datetime
 # data storage
 import json
+# for loop progress
+from tqdm import tqdm, trange
 
 
 @dataclass
@@ -51,7 +53,7 @@ class Model:
             if int(self.input_data['a']) > int(self.input_data['b']):
                 raise Exception('a > b for integers a, b')
             
-            for i in range (self.input_data['a'], self.input_data['b'] + 1):
+            for i in trange (self.input_data['a'], self.input_data['b'] + 1):
                 if i % 2 == 0:
                     self.output_data.append(i)
             

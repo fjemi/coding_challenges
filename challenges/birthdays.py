@@ -13,6 +13,8 @@ from typing import List, Dict
 from calendar import monthrange
 from dateutil.parser import parse
 from datetime import datetime, date
+# for loop progress 
+from tqdm import tqdm, trange
 
 
 @dataclass(order=True)
@@ -58,7 +60,7 @@ class Model:
     count: Dict[str, int] = field(default_factory=dict)
     created: datetime = field(default_factory=lambda: datetime.utcnow())
     runtime: int = None
-    error: str = field(init=False)
+    error: str = None
     
     
     def __post_init__(self):
@@ -72,7 +74,7 @@ class Model:
             b = int(self.created.strftime('%Y'))
             
             # List the birthdates since the original
-            for i in range (a, b + 1):                 
+            for i in trange (a, b + 1):                 
                 _date = date(i, self.birthdate['month'], self.birthdate['day'])
                 weekday = _date.strftime('%a')
                 _date = _date.strftime('%G%m%d')
@@ -87,7 +89,7 @@ class Model:
                     
         except Exception as e:
             # Set variables to None on error
-            for key in vars(self).keys():
+            for key in tqdm(vars(self).keys()):
                 if key != 'created':
                     vars(self)[key] == None
                     
