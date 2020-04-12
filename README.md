@@ -4,7 +4,8 @@ character type.
 
 
 ## Usage
-Run the following commands to clone the repo and execute the script
+### Script/CL
+Run the following commands to execute the script
 ```
 $ git clone https://github.com/fjemi/$ python_password_generator.git 
 passwordgenerator
@@ -14,6 +15,13 @@ $ python password_generator.py <length> "[<character_types>]"
 where length is a positive ```integer``` and ```character_types``` can be a 
 combination of ```'number'```, ```'lowercase'```, ```'uppercase'```, or 
 ```'special'```.
+
+## Docker Image
+Run the following commands to build and run a docker image of the script
+```
+$ docker build -t passwordgenerator .
+$sudo docker run --rm passwordgenerator -l '<length>' -c "[<character_types>]"
+```
 
 
 ## Tech Stack

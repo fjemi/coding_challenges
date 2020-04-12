@@ -11,4 +11,4 @@ RUN cd /tmp && pipenv lock --requirements > /tmp/requirements.txt
 RUN pip install -r /tmp/requirements.txt
 
 # Execute commands when the image loads
-CMD [ "python", "./tmp/password_generator.py" ]
+ENTRYPOINT ["python", "./tmp/password_generator.py"]
