@@ -1,13 +1,14 @@
 '''Simple script to generate passwords in Python'''
 
+# CL arguements
 import ast
 import sys
-
+# Character types
 import string
 # Generate random integer
 from random import randint
 # Data modeling
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 # Type hints
 from typing import List
 
@@ -20,6 +21,9 @@ CHAR_TYPES = {
 
 @dataclass
 class PasswordGenerator:
+  '''
+    Dataclass for generating a random password
+  '''
   # The length of the password
   length: int
   # Types of characters to include: lowercase, uppercase, etc.
@@ -29,11 +33,13 @@ class PasswordGenerator:
   password: str = ''
   
   def __post_init__(self):
-    '''Set the pool of characters'''
-    for chars in self.chars:
+    '''
+      Set the pool of characters
+    '''
+    for type_ in self.chars:
       # Check if valid char type
-      if chars in CHAR_TYPES.keys():
-        self.pool = self.pool + CHAR_TYPES[chars]
+      if type_ in CHAR_TYPES.keys():
+        self.pool = self.pool + CHAR_TYPES[type_]
     
     pool_size = len(self.pool) - 1
     # Check if pool is populated
@@ -42,21 +48,20 @@ class PasswordGenerator:
         random_number = randint(0, pool_size)
         self.password = self.password + self.pool[random_number]
     
+  def get_password(self):
+    return {'password': self.password}
    
 if __name__ == '__main__':
-  # Example input/output
-  chars = ['lowercase', 'uppercase']
-  length = 8
-  pg = PasswordGenerator(8, chars)
-  print(pg)
-  
   # Example input/output passed as arguements from CL
   # CMD: python password_generator.py 8 "['number', 'lowercase']"
-  length = int(sys.argv[1])
-  chars = ast.literal_eval(sys.argv[2])
-  print(length, chars)
+  try:
+    length = int(sys.argv[1])
+    chars = ast.literal_eval(sys.argv[2])
+  except:
+    length = 8
+    chars = ['number', 'lowercase', 'uppercase', 'special']
   pg = PasswordGenerator(length, chars)
-  print(pg)
+  print(pg.get_password())
         
         
 
