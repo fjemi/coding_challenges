@@ -12,7 +12,7 @@ $ cd passwordgenerator
 $ python password_generator.py <length> "[<character_types>]"
 ```
 where length is a positive ```integer``` and ```character_types``` can be a 
-combination of ```'numbers'```, ```'lowercase'```, ```'uppercase'```, or 
+combination of ```'number'```, ```'lowercase'```, ```'uppercase'```, or 
 ```'special'```.
 
 
