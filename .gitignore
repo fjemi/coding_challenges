@@ -1,6 +1,8 @@
 # Kate
 *.kate-swp
 
+# VSCode
+.vscode/
 
 # Jupyter
 # https://github.com/jupyter/notebook/blob/master/.gitignore
