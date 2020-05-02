@@ -7,6 +7,9 @@ verify_ssl = true
 
 [packages]
 numpy = "*"
+fastapi = "*"
+pydantic = "*"
+uvicorn = "*"
 
 [requires]
 python_version = "3.8"
