@@ -1,45 +1,73 @@
-'''
-Find longest word in dictionary that is a subsequence of a given string
-
+'''Find longest word in list that is a subsequence of a string
 https://techdevguide.withgoogle.com/resources/find-longest-word-in-dictionary-that-subsequence-of-given-string/#!
 '''
 # Library to get the maximum value from a dictionary
 import operator
 
-S = "abppplee"
-D = {"able", "ale", "apple", "bale", "kangaroo", "abple"}
-count = 0
-ss_max = 0
+# Data modeling
+from dataclasses import dataclass, asdict, field
+import json
+# Type hints
+from typing import List, Dict, Any
+# Arrays
+import numpy as np
 
-# Function to find subsequences of a string
-def subsequence(string, sub_string):
-  s_bool = False
-  sub_count = 0
+@dataclass
+class SubSequence:
+  '''Finds the longest word in a last that is subsequence of a string
+  '''
+  string: str
+  words: List[str]
+  subsequences: List = field(default_factory=lambda: [])
+  longest_subsequence: List = field(default_factory=lambda: None)
   
-  for s_index in range(0, len(string)):
-    for ss_index in range(0, len(sub_string)):
-      if sub_string[ss_index] == string[s_index]:
-        sub_count += 1
-        s_index += 1 # Increment the string counter in the outer for loop
-        continue  # Move on to the next char in the substring if the char is found in the string
-  
-  # Add the subsquence to the list if count is greater than or equal to the length of the subsequence
-  if sub_count >= len(sub_string):
-    s_bool = True
-  
-  return s_bool
-  
-ss_len = 0
-ss_current = []
+  def __post_init__(self):
+    '''Execute after the class initializes
+    '''
+    
+    def check_subsequence(string, word):
+      '''Check whether a word is a subsequence of a string
+      '''
+      
+      # Check if the word is larger than the string
+      if len(word) > len(string):
+        return -1
+      
+      # Check if all the chars in the word are in the string
+      for char in word:
+        if char not in list(string):
+          return -1
+        
+      # Store removed chars and indices
+      removed_chars = {}
+      
+      # Add matching chars to the Store
+      for i, sub_char in enumerate(string):
+        for word_char in word:
+          if sub_char == word_char:
+            if sub_char not in removed_chars.keys():
+              removed_chars[sub_char] = i
+      
+      # Subsequence if store keys match word
+      if list(removed_chars.keys()) == list(word):
+        return len(word)
+      
+      return -1
+    
+    # Set all subsequences and the longest ones
+    max = 0
+    for word in self.words:
+      cs = check_subsequence(self.string, word)
+      if cs != -1:
+        self.subsequences.append(word)
+        if cs > max:
+          self.longest_subsequence = [word]
+        if cs == max:
+          self.longest_subsequence.append(word)
 
-# Create a list of substrings that are subsequences of S
-for item in D:
-  if subsequence(S, item) == True and len(item) >= ss_len:
-    ss_current.append((item, len(item)))
-    ss_len = len(item)
-    count += 1
-
-# Print the maximum lengthed substring from the list
-print(ss_current)
-print(max(ss_current))
-
+if __name__ == '__main__':
+  string = "abppplee"
+  words = ["able", "ale", "apple", "bale", "kangaroo", "abple"]
+  SS = SubSequence(string, words)
+  print(json.dumps(asdict(SS), indent=2))
+  
