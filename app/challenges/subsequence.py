@@ -33,7 +33,7 @@ class SubSequence:
       if len(word) > len(string):
         return -1
       
-      # Check if all the chars in the word are in the string
+      # Check if word chars a sub list of the string chars
       for char in word:
         if char not in list(string):
           return -1
