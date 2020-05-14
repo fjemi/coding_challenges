@@ -5,9 +5,16 @@ https://techdevguide.withgoogle.com/resources/volume-of-water/#code-challenge
 
 # Data modeling
 from dataclasses import dataclass, field, asdict
+# JSON
 import json
+import jsbeautifier
 # Type hinting
 from typing import List, Dict
+
+# jsbeautifier settings
+opts = jsbeautifier.default_options()
+opts.indent_size = 2
+
 
 @dataclass
 class Model:
@@ -98,4 +105,4 @@ class Model:
 if __name__ == '__main__':
   HEIGHTS = [1, 3, 2, 4, 1, 3, 1, 4, 5, 2, 2, 1, 4, 2, 2]
   M = Model(HEIGHTS)
-  print(json.dumps(asdict(M), indent=2))
+  print(jsbeautifier.beautify(json.dumps(asdict(M)), opts))
