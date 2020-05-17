@@ -1,6 +1,4 @@
-'''
-Minesweeper
-
+'''Minesweeper
 https://techdevguide.withgoogle.com/resources/coding-question-minesweeper/#!
 '''
 
