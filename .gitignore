@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # Kate
 *.kate-swp
 
@@ -74,6 +75,8 @@ geckodriver.log
 # Python
 # https://github.com/github/gitignore/blob/master/Python.gitignore
 
+=======
+>>>>>>> daily-programmer/master
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -84,6 +87,10 @@ __pycache__/
 
 # Distribution / packaging
 .Python
+<<<<<<< HEAD
+=======
+env/
+>>>>>>> daily-programmer/master
 build/
 develop-eggs/
 dist/
@@ -95,12 +102,18 @@ lib64/
 parts/
 sdist/
 var/
+<<<<<<< HEAD
 wheels/
 share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
 MANIFEST
+=======
+*.egg-info/
+.installed.cfg
+*.egg
+>>>>>>> daily-programmer/master
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -115,17 +128,25 @@ pip-delete-this-directory.txt
 # Unit test / coverage reports
 htmlcov/
 .tox/
+<<<<<<< HEAD
 .nox/
+=======
+>>>>>>> daily-programmer/master
 .coverage
 .coverage.*
 .cache
 nosetests.xml
 coverage.xml
+<<<<<<< HEAD
 *.cover
 *.py,cover
 .hypothesis/
 .pytest_cache/
 cover/
+=======
+*,cover
+.hypothesis/
+>>>>>>> daily-programmer/master
 
 # Translations
 *.mo
@@ -134,8 +155,11 @@ cover/
 # Django stuff:
 *.log
 local_settings.py
+<<<<<<< HEAD
 db.sqlite3
 db.sqlite3-journal
+=======
+>>>>>>> daily-programmer/master
 
 # Flask stuff:
 instance/
@@ -148,6 +172,7 @@ instance/
 docs/_build/
 
 # PyBuilder
+<<<<<<< HEAD
 .pybuilder/
 target/
 
@@ -244,3 +269,28 @@ gitignore
 .history/
 =======
 >>>>>>> coding-challenges/master
+=======
+target/
+
+# IPython Notebook
+.ipynb_checkpoints
+
+# pyenv
+.python-version
+
+# celery beat schedule file
+celerybeat-schedule
+
+# dotenv
+.env
+
+# virtualenv
+venv/
+ENV/
+
+# Spyder project settings
+.spyderproject
+
+# Rope project settings
+.ropeproject
+>>>>>>> daily-programmer/master
