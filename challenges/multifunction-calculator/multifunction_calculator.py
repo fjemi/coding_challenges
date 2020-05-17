@@ -1,13 +1,6 @@
+'''
+https://www.reddit.com/r/dailyprogrammer/comments/pjbj8/easy_challenge_2/'''
 
-# coding: utf-8
-
-# In[1]:
-
-# r/DailyProgrammer Challenge #2 [easy]
-# https://www.reddit.com/r/dailyprogrammer/comments/pjbj8/easy_challenge_2/
-
-
-# In[2]:
 
 def FMA():
     print ("This function calculates the force of an object given its acceleration and mass")

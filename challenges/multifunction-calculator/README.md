@@ -1,4 +1,4 @@
-r/DailyProgrammer Challenge #2 [easy]
+# Multi-function Calculator
 
 https://www.reddit.com/r/dailyprogrammer/comments/pjbj8/easy_challenge_2/
 
