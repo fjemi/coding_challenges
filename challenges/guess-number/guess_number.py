@@ -1,93 +1,59 @@
 
-# coding: utf-8
+'''Guess Number
+https://www.reddit.com/r/dailyprogrammer/comments/pii6j/difficult_challenge_1/
+'''
 
-# In[ ]:
-
-# r/DailyProgrammer Challenge #1 - Guessing Game (difficult)
-# https://www.reddit.com/r/dailyprogrammer/comments/pii6j/difficult_challenge_1/
-
-
-# In[ ]:
 
 import string
-import random
+from random import randint
+# Data modeling
+from dataclasses import dataclass, field, asdict
+from json import dumps as json_dumps
+# Type hints
+from typing import List
+from numbers import Integral
 
 
-# In[ ]:
-
-# Asks the user to input a number. Loops until one is entered
-
-def inputNumber(message):
+@dataclass
+class Model:
+  '''Class for guess a random number
+  '''
+  guesses: List = field(default_factory=lambda: [])
+  number: int = randint(0, 100)
+  guess_range: List[int] = field(default_factory=lambda: [0, 100])
+  
+  
+  def __post_init__(self):
+    '''Execute after class initializes
+    '''
     while True:
-        try:
-            userInput = int(input(message))
-        except ValueError:
-            print ("Not an integer! Try again")
-            continue
-        else:
-            return userInput
-            break
-
-
-# In[ ]:
-
-# Asks the user to input a char. Loops until one is entered
-
-def inputHiLow(message):
-    while True:
-        userInput = input(message).upper()
-        
-        if (userInput.upper() in ["H", "L"]):
-            # print (userInput)
-            return (userInput)
-            break
-        else:
-            print ("Not an H or L! Try again." + "\n")
-            continue
-
-
-# In[ ]:
-
-# Asks the user to enter a number between 1 and 100
-
-while True:
-    usernumber = inputNumber("Enter a number between 1 and 100: ")
-    if (usernumber > 0 and usernumber < 101):
-        break
-    else:
-        print("This number is not in the range 1-100! Try again." + "\n")
-
-
-# In[ ]:
-
-# Computer picks a number
-numberguesses = 1
-highnumber = 101
-lownumber = 0
-
-
-# In[ ]:
-
-# Computer asks if it picked the right number. Keeps guessing until it does.
-
-while True: 
-    print("\n")
-    print("%d, %d" % (lownumber, highnumber))
-    print("\n")
+      #print(self)
+      # Get user input
+      input_message = f'Guess a number between {self.guess_range[0]} and {self.guess_range[1]}: '
+      user_input = input(input_message)
+      
+      # Check if input is a number
+      number_check = True
+      try:
+        user_input = int(user_input)
+        self.guesses.append(user_input)
+      except:
+        number_check = False
+        print(f'"{user_input}" is not a number. Please try again.')
+      
+      # Check if the guess is correct
+      if number_check:
+        if user_input > self.number:
+          self.guess_range[1] = user_input
+          print(f'The number is less than "{user_input}"')
+        elif user_input < self.number:
+          self.guess_range[0] = user_input
+          print(f'The number is greater than "{user_input}"')
+        elif user_input == self.number:
+          print(f'Good guess! "{self.number}" is the correct number.')  
+          break
     
-    computerguess = random.randint(lownumber, highnumber)
     
-    print ("The computer guessed %d on try number %d " % (computerguess, numberguesses))
-    print("\n")
-    
-    if (computerguess == usernumber): 
-        print ("Your number was %d, and the computer guessed it after %d tries " % (usernumber, numberguesses)) 
-        break 
-    else: 
-        numberguesses += 1 
-        ask = inputHiLow("Is your number higher or lower than %d? [H/L] " % computerguess).upper()
-        
-        if (ask == "H"):
-            lownumber = computerguess
-        else:
-            highnumber = computerguess
+if __name__ == '__main__':
+  M = Model()
+  print(json_dumps(asdict(M), indent=2))
