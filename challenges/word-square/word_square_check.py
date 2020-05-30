@@ -9,7 +9,7 @@ import json
 from typing import List, Dict, Any
 
 @dataclass
-class WordSquareCheck:
+class Model:
   words: List[str]
   length_check: bool = True
   is_word_square: str = 'yes'
@@ -40,5 +40,5 @@ if __name__ == '__main__':
   ]
   
   for words in input:
-    WSC = WordSquareCheck(words)
-    print(json.dumps(asdict(WSC), indent=2))
+    M = Model(words)
+    print(json.dumps(asdict(M), indent=2))

@@ -14,7 +14,7 @@ from itertools import permutations
 from word_square_check import WordSquareCheck
 
 @dataclass
-class GenerateWordSquares:
+class Model:
   words: List[str]
   squares: List[str] = field(default_factory=lambda: [])
   square_length: int = None
@@ -42,5 +42,5 @@ if __name__ == '__main__':
   ]
   
   for words in input:
-    GWS = GenerateWordSquares(words)
-    print(json.dumps(asdict(GWS), indent=2))
+    M = Model(words)
+    print(json.dumps(asdict(M), indent=2))
