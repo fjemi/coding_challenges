@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 # Kate
 *.kate-swp
 
@@ -77,6 +78,11 @@ geckodriver.log
 
 =======
 >>>>>>> daily-programmer/master
+=======
+# Kate editor
+*.kate-swp
+
+>>>>>>> password-generator/master
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -88,9 +94,13 @@ __pycache__/
 # Distribution / packaging
 .Python
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 env/
 >>>>>>> daily-programmer/master
+=======
+env/
+>>>>>>> password-generator/master
 build/
 develop-eggs/
 dist/
@@ -103,6 +113,7 @@ parts/
 sdist/
 var/
 <<<<<<< HEAD
+<<<<<<< HEAD
 wheels/
 share/python-wheels/
 *.egg-info/
@@ -114,6 +125,11 @@ MANIFEST
 .installed.cfg
 *.egg
 >>>>>>> daily-programmer/master
+=======
+*.egg-info/
+.installed.cfg
+*.egg
+>>>>>>> password-generator/master
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -129,14 +145,18 @@ pip-delete-this-directory.txt
 htmlcov/
 .tox/
 <<<<<<< HEAD
+<<<<<<< HEAD
 .nox/
 =======
 >>>>>>> daily-programmer/master
+=======
+>>>>>>> password-generator/master
 .coverage
 .coverage.*
 .cache
 nosetests.xml
 coverage.xml
+<<<<<<< HEAD
 <<<<<<< HEAD
 *.cover
 *.py,cover
@@ -147,6 +167,10 @@ cover/
 *,cover
 .hypothesis/
 >>>>>>> daily-programmer/master
+=======
+*,cover
+.hypothesis/
+>>>>>>> password-generator/master
 
 # Translations
 *.mo
@@ -156,10 +180,13 @@ cover/
 *.log
 local_settings.py
 <<<<<<< HEAD
+<<<<<<< HEAD
 db.sqlite3
 db.sqlite3-journal
 =======
 >>>>>>> daily-programmer/master
+=======
+>>>>>>> password-generator/master
 
 # Flask stuff:
 instance/
@@ -172,6 +199,7 @@ instance/
 docs/_build/
 
 # PyBuilder
+<<<<<<< HEAD
 <<<<<<< HEAD
 .pybuilder/
 target/
@@ -270,6 +298,8 @@ gitignore
 =======
 >>>>>>> coding-challenges/master
 =======
+=======
+>>>>>>> password-generator/master
 target/
 
 # IPython Notebook
@@ -293,4 +323,7 @@ ENV/
 
 # Rope project settings
 .ropeproject
+<<<<<<< HEAD
 >>>>>>> daily-programmer/master
+=======
+>>>>>>> password-generator/master
