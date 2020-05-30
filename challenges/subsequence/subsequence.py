@@ -13,7 +13,7 @@ from typing import List, Dict, Any
 import numpy as np
 
 @dataclass
-class SubSequence:
+class Model:
   '''Finds the longest word in a last that is subsequence of a string
   '''
   string: str
@@ -66,8 +66,8 @@ class SubSequence:
           self.longest_subsequence.append(word)
 
 if __name__ == '__main__':
-  string = "abppplee"
-  words = ["able", "ale", "apple", "bale", "kangaroo", "abple"]
-  SS = SubSequence(string, words)
-  print(json.dumps(asdict(SS), indent=2))
+  STRING = "abppplee"
+  WORDS = ["able", "ale", "apple", "bale", "kangaroo", "abple"]
+  M = Model(string, words)
+  print(json.dumps(asdict(M), indent=2))
   

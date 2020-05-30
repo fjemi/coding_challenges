@@ -1,4 +1,5 @@
-'''Simple script to generate passwords in Python'''
+'''Simple script to generate passwords in Python
+'''
 
 # CL arguements
 import ast
@@ -20,9 +21,8 @@ CHAR_TYPES = {
 }
 
 @dataclass
-class PasswordGenerator:
-  '''
-    Dataclass for generating a random password
+class Model:
+  '''Dataclass for generating a random password
   '''
   # The length of the password
   length: int
@@ -33,8 +33,7 @@ class PasswordGenerator:
   password: str = ''
   
   def __post_init__(self):
-    '''
-      Set the pool of characters
+    '''Set the pool of characters
     '''
     for type_ in self.chars:
       # Check if valid char type
@@ -55,13 +54,18 @@ if __name__ == '__main__':
   # Example input/output passed as arguements from CL
   # CMD: python password_generator.py 8 "['number', 'lowercase']"
   try:
-    length = int(sys.argv[1])
-    chars = ast.literal_eval(sys.argv[2])
+    LENGTH = int(sys.argv[1])
+    CHARS = ast.literal_eval(sys.argv[2])
   except:
-    length = 8
-    chars = ['number', 'lowercase', 'uppercase', 'special']
-  pg = PasswordGenerator(length, chars)
-  print(pg.get_password())
+    LENGTH = 8
+    CHARS = [
+      'number', 
+      'lowercase', 
+      'uppercase', 
+      'special'
+      ]
+  M = Model(LENGTH, CHARS)
+  print(M.get_password())
         
         
 

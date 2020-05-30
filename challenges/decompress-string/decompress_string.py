@@ -9,7 +9,7 @@ import json
 from typing import List, Dict
 
 @dataclass
-class Decompress:
+class Model:
   '''Class to decompress compressed strings
   '''
   compressed_str: str
@@ -50,5 +50,5 @@ class Decompress:
 if __name__ == '__main__':
   compressed_str = ['3[abc]4[ab]c']#, '2[3[a]b]', '1[a]2[3[b]]']
   for string in compressed_str:
-    D = Decompress(string)
-    print(json.dumps(asdict(D), indent=2))
+    M = Model(string)
+    print(json.dumps(asdict(M), indent=2))

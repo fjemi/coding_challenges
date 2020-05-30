@@ -16,7 +16,7 @@ opts = jsbeautifier.default_options()
 opts.indent_size = 2
 
 @dataclass
-class TreeTraversal:
+class Model:
   '''Given a a an mxn matrix of colors (tree), identify the number of 
   connections between adjacent (up/down, left/right, or diagonal) 
   colors of the same kind
@@ -81,11 +81,11 @@ class TreeTraversal:
       
   
 if __name__ == '__main__':
-  tree = [
+  TREE = [
     ['blue', 'green', 'red'],
     ['blue', 'blue', 'green'],
     ['red', 'blue', 'green'],
     ['red','red', 'blue']
   ]
-  TT = TreeTraversal(tree)
-  print(jsbeautifier.beautify(json.dumps(asdict(TT)), opts))
+  M = Model(TREE)
+  print(jsbeautifier.beautify(json.dumps(asdict(M)), opts))

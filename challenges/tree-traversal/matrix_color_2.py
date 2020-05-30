@@ -11,7 +11,7 @@ from typing import List, Dict, Any
 import numpy as np
 
 @dataclass
-class TreeTreversal:
+class Model:
   '''Given a a an mxn matrix of colors (tree), identify the number of 
   connections between adjacent (up/down, left/right, or diagonal) 
   colors of the same kind
@@ -107,51 +107,14 @@ class TreeTreversal:
               print(sorted([(i, j), (int(node[0]), int(node[1]))]))
       
       
-       
-    
-
-  
 if __name__ == '__main__':
-  tree = [
+  TREE = [
     ['blue', 'green', 'red'],
     ['blue', 'blue', 'green'],
     ['red', 'blue', 'green'],
     ['red','red', 'blue']
   ]
-  TT = TreeTreversal(tree)
-  TT.set_nodes()
-  TT.find_connections()
-  #print(json.dumps(asdict(TT), indent=2))
-
-
-# Create an array
-a = np.array([['blue', 'green', 'red'],
-	['blue', 'blue', 'green'],
-	['red', 'blue', 'green'],
-	['red','red','blue']])
-
-# Recursively check for connected nodes
-color_count = {'blue': 0, 'red': 0, 'green': 0}
-for i in range(0, a.shape[0]):
-	for j in range(0, a.shape[1]):
-	
-		if j < (a.shape[1] - 1) and i < (a.shape[0] - 1):
-			if a[i][j] == a[i+1][j]:
-				color_count[str(a[i][j])] += 1
-			if a[i][j] == a[i][j +1]:
-				color_count[str(a[i][j])] += 1
-		
-		elif i == (a.shape[0] - 1) and j < (a.shape[1] - 1):
-			if a[i][j] == a[i][j+1]:
-				color_count[str(a[i][j])] += 1
-				
-		elif j == (a.shape[1] - 1) and i < (a.shape[0] - 1):
-			if a[i][j] == a[i+ 1][j]:
-				color_count[str(a[i][j])] += 1
-		
-print(a)			
-print('Connect nodes by color: %s\n' % str(color_count))
-
-
-
-
+  M = Model(TREE)
+  M.set_nodes()
+  M.find_connections()
+  #print(json.dumps(asdict(M), indent=2))
