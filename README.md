@@ -1,3 +1,3 @@
-# reddit-DailyProgrammer
+# Coding Challenges
 
-https://www.reddit.com/r/dailyprogrammer/wiki/index
+Collection of coding challenges
