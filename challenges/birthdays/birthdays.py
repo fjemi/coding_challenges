@@ -1,6 +1,5 @@
-"""
-Determine the date and day of a person's birthdays from birth to the current date
-"""
+'''Determine the date and day of a person's birthdays from birth to the current date
+'''
 
 
 # data analysis
