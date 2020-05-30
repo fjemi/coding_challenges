@@ -9,6 +9,8 @@ import json
 # Type hints
 #from typing import List, Dict, Any
 import numbers
+# Dates and time
+from datetime import datetime
 
 
 @dataclass
@@ -18,7 +20,7 @@ class Model:
   name: str
   age: int
   username: str
-  output: str = ''
+  time: str = str(datetime.utcnow())
   
   def __post_init__(self):
     '''Check it valid types were passed, and set output if so
@@ -35,7 +37,13 @@ class Model:
     
     # Output results if entries are valid
     if valid_attribute_types:  
-      self.output = f'your name is {self.name}\nyou age is {self.age}\nyour username is {self.username}'
+      output = f'your name is {self.name}\nyou age is {self.age}\nyour username is {self.username}'
+      print(output)
+      
+      # Log results
+      with open('log.txt', 'a+') as file:
+        log = json.dumps(asdict(self))
+        file.write(f'{log}\n')
   
   
 if __name__ == '__main__':
@@ -44,4 +52,4 @@ if __name__ == '__main__':
     age=1,
     username='pass'
   )
-  print(json.dumps(asdict(M), indent=2))
+  #print(json.dumps(asdict(M), indent=2))
