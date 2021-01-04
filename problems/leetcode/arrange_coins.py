@@ -16,7 +16,5 @@ def arrange_coins(n: int) -> int:
 
 
 if __name__ == '__main__':
-  n = [0, 1, 5, 8]
-  for i in n:
-    AC = arrange_coins(i)
-    print({'rowCoins': AC})
+  AC = arrange_coins(8)
+  print({'rowCoins': AC})
