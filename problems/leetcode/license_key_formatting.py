@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 def license_key_formatting(S: str, K: int) -> str:
     ''' 482. License Key Formatting
     https://leetcode.com/problems/license-key-formatting    

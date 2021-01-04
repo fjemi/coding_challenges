@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from typing import List
 
 def summary_ranges(nums: List[int]) -> List[str]:
