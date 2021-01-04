@@ -41,7 +41,7 @@ class Model:
       print(output)
       
       # Log results
-      with open('log.txt', 'a+') as file:
+      with open('user_info_log.txt', 'a+') as file:
         log = json.dumps(asdict(self))
         file.write(f'{log}\n')
   
