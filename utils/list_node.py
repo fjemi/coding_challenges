@@ -4,7 +4,7 @@ from typing import List
 from dataclasses import dataclass
 
 @dataclass
-class ListNode():
+class list_node():
     '''Class for a node in a linked list
     :type val: int
     :type next: ListNode
@@ -14,5 +14,5 @@ class ListNode():
 
 
 if __name__ == '__main__':
-  ln = ListNode(100)
+  ln = List_node(100)
   print(ln)
