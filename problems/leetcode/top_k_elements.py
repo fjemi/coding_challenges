@@ -2,7 +2,7 @@
 
 from typing import List
 
-def topKFrequent(nums, k):
+def top_k_elements(nums, k):
     ''' # 347. Top K Frequent Elements
     https://leetcode.com/problems/top-k-frequent-elements/
     ---
@@ -37,3 +37,6 @@ def topKFrequent(nums, k):
             break
     
     return output1
+
+    if __name__ == '__main__':
+        print('TODO: add function call to main block')

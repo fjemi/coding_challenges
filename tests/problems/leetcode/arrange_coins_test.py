@@ -1,13 +1,7 @@
 #!/usr/bin/env python3
 
-import pytest
-from os.path import abspath
-import sys
-
-# enable imports from utils directory
-PROBLEMS_DIR = abspath('../../..') + '/problems/leetcode/'
-print(PROBLEMS_DIR)
-sys.path.insert(0, PROBLEMS_DIR)
+from get_problems_dir import get_problems_dir
+PROBLEMS_DIR = get_problems_dir()
 
 from arrange_coins import arrange_coins
 
