@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 
+import import_from_problems_leetcode
+
 import pytest
 from os.path import abspath
 import sys
 
 # enable imports from utils directory
-PROBLEMS_DIR = abspath('..') + '/problems/leetcode'
+PROBLEMS_DIR = abspath('../../..') + '/problems/leetcode/'
 sys.path.insert(0, PROBLEMS_DIR)
 
 from summary_ranges import summary_ranges

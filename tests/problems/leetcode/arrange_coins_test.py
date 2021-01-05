@@ -5,7 +5,8 @@ from os.path import abspath
 import sys
 
 # enable imports from utils directory
-PROBLEMS_DIR = abspath('..') + '/problems/leetcode/'
+PROBLEMS_DIR = abspath('../../..') + '/problems/leetcode/'
+print(PROBLEMS_DIR)
 sys.path.insert(0, PROBLEMS_DIR)
 
 from arrange_coins import arrange_coins

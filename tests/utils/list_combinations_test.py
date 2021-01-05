@@ -5,7 +5,7 @@ from os.path import abspath
 import sys
 
 # enable imports from utils directory
-UTILS_DIR = abspath('..') + '/utils'
+UTILS_DIR = abspath('../..') + '/utils'
 sys.path.insert(0, UTILS_DIR)
 
 from list_combinations import list_combinations

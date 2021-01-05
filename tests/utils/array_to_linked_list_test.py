@@ -5,7 +5,7 @@ from os.path import abspath
 import sys
 
 # enable imports from utils directory
-UTILS_DIR = abspath('..') + '/utils'
+UTILS_DIR = abspath('../..') + '/utils'
 sys.path.insert(0, UTILS_DIR)
 
 from array_to_linked_list import array_to_linked_list
