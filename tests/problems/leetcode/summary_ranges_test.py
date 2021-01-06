@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 
-from get_problems_dir import get_problems_dir
-PROBLEMS_DIR = get_problems_dir()
+from get_modules_dir import get_modules_dir
+get_modules_dir('problems/leetcode/')
 
 from summary_ranges import summary_ranges
 
-def test_summary_ranges():
+def test_summary_ranges() -> None:
   '''
   '''
   
@@ -24,7 +24,7 @@ def test_summary_ranges():
   ]
 
   for test in test_cases:
-    sr = summary_ranges(test['range'])
-    assert sr == test['result']
-  
-  
+    SR = summary_ranges(test['range'])
+    assert SR == test['result']
+
+  return None

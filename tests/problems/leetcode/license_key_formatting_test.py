@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 
-from get_problems_dir import get_problems_dir
-PROBLEMS_DIR = get_problems_dir()
+from get_modules_dir import get_modules_dir
+get_modules_dir('problems/leetcode/')
 
 from license_key_formatting import license_key_formatting
 
-def test_license_key_formatting():
+def test_license_key_formatting() -> None:
   '''
   '''
   test_cases = [
@@ -15,5 +15,7 @@ def test_license_key_formatting():
   ]
   
   for test in test_cases:
-    lfk = license_key_formatting(test['S'], test['K'])
-    assert lfk == test['result']
+    LFK = license_key_formatting(test['S'], test['K'])
+    assert LFK == test['result']
+
+  return None

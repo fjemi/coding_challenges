@@ -1,12 +1,7 @@
 #!/usr/bin/env python3
 
-import pytest
-from os.path import abspath
-import sys
-
-# enable imports from utils directory
-UTILS_DIR = abspath('../..') + '/utils'
-sys.path.insert(0, UTILS_DIR)
+from get_modules_dir import get_modules_dir
+get_modules_dir('utils/')
 
 from array_to_linked_list import array_to_linked_list
 

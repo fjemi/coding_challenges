@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 
-from get_problems_dir import get_problems_dir
-PROBLEMS_DIR = get_problems_dir()
+from get_modules_dir import get_modules_dir
+get_modules_dir('problems/leetcode/')
 
 from arrange_coins import arrange_coins
 
-def test_arrange_coins():
+def test_arrange_coins() -> None:
   '''
   '''
   test_cases = [
@@ -16,3 +16,5 @@ def test_arrange_coins():
   for test in test_cases:
     AC = arrange_coins(test['n'])
     assert AC == test['result']
+
+  return None

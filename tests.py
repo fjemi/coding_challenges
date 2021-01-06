@@ -19,9 +19,9 @@ def execute_pytests(paths: List[str]) -> None:
     # set path for current working directory
     chdir(TESTS_DIR + path)
     # execute pytests in cwd
-    pt = pytest.main()
-    # exit loop if a pytest fails
-    if pt.name == 'TESTS_FAILED':
+    PT = pytest.main()
+    # exit loop if a pytest fails, 
+    if PT.value != 0:
       break
     
   return None

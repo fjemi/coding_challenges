@@ -1,9 +1,9 @@
-from get_problems_dir import get_problems_dir
-PROBLEMS_DIR = get_problems_dir()
+from get_modules_dir import get_modules_dir
+get_modules_dir('problems/leetcode/')
 
 from top_k_elements import top_k_elements
 
-def test_top_k_elements():
+def test_top_k_elements() -> None:
   '''
   '''
   
@@ -15,4 +15,6 @@ def test_top_k_elements():
   for test in test_cases:
     TKE = top_k_elements(test['nums'], test['k'])
     assert TKE == test['result']
+
+  return None
   
