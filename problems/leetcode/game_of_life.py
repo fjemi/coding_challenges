@@ -3,7 +3,7 @@
 from copy import deepcopy
 from typing import List
 
-def total_cells(board: List[List[int]]) -> List[List[int]]:
+def game_of_life(board: List[List[int]]) -> List[List[int]]:
     ''' determine the next state for cells in a board 
     sum of the cell's surrounding cells
     :type board: Lit[List[int]]
@@ -68,6 +68,6 @@ if __name__ == '__main__':
       print(i)
 
   print()
-  TL = total_cells(board)
-  for j in TL:
+  GoL = game_of_life(board)
+  for j in GoL:
       print(j)
