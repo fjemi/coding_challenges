@@ -6,7 +6,7 @@ get_modules_dir('problems/leetcode/')
 
 from game_of_life import game_of_life
 
-def game_of_life() -> None:
+def test_game_of_life() -> None:
   '''
   '''
   test_cases = [
