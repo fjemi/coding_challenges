@@ -2,7 +2,6 @@ from typing import List
 
 
 def sort_array_by_parity(array: List[int]) -> List[int]:
-  ''''''
   odd = []
   for i in reversed(range(len(array))):
     if array[i] % 2 != 0:

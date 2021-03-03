@@ -15,10 +15,6 @@ def model(prices: List[int], k: int):
     if i not in store.keys() and prices[i] < k:
       store[i] = [prices[i]]
 
-    #if i == len(prices) - 1 or prices[i] > k:
-      #store[i] = len(store[i])
-      #break
-
     for j in range(i + 1, len(prices)):
       if prices[j] > k:
         break
