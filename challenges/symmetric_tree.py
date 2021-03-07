@@ -1,31 +1,19 @@
 #!usr/bin/env python3
 
-from typing import List, Any
-from dataclasses import dataclass
+from typing import List, Dict
 
 
-@dataclass
-class TreeNode:
-  val: int = None
-  left: Any = None
-  right: Any = None
-  
-  
-def list_to_treenode(l: List[int]) -> TreeNode:
+def list_to_tree(l: List[int]) -> Dict:
   '''create a binary tree from a list of integers'''
 
-  '''
-  if len(l) == 1:
-    return TreeNode(l[0])
-  elif len(l) == 2:
-    return TreeNode(l[0], TreeNode(l[1]))
-  elif len(l) == 3:
-    return TreeNode(l[0], TreeNode(l[1]), TreeNode(l[2]))
-  '''
-
-  
-  store = {}
+  # store root and child nodes
+  json_store = {}
+  # store visited child nodes
   steps = [1, 2]
+  
+  # create dictionary root and child nodes -> {root: [left, right]}
+  # nodes are represented as position_value, where position is 
+  # is the index of the value in a list
   for i in range(len(l)):
     # set left chid
     try:
@@ -37,24 +25,46 @@ def list_to_treenode(l: List[int]) -> TreeNode:
       right = l[steps[-1]]
     except:
       right = None
-    # add node and children to store
-    if left is not None and right is not None:
-      store[f'{i}_{l[i]}'] = [f'{steps[-2]}_{left}', f'{steps[-1]}_{right}']
-    # update steps
-    steps.extend([steps[-1] + 1, steps[-1] + 2])
-  
-  print(store)
-  
-  for key in reversed(store.keys()):
-    for i in range(len(store[key])):
-      print(store[key][i])
-      try:
-        print(store[store[key][i]])
-      except:
-        pass
       
-def model(root: TreeNode) -> bool:
-  if root.left == root.right:
+    # add root node and children to store
+    json_store[f'{i}_{l[i]}'] = {'left': f'{steps[-2]}_{left}', 'right': f'{steps[-1]}_{right}'}
+    # update steps with positions for next nodes children
+    steps.extend([steps[-1] + 1, steps[-1] + 2])
+    
+  # reset and trim nodes
+  keys = list(json_store.keys())
+  
+  for key in reversed(keys):
+    left = json_store[key]['left']
+    right = json_store[key]['right']
+    # remove position from child -> position_value
+    left_no_underscore = left[left.find('_') + 1:]
+    right_no_underscore = right[:right.find('_'):]
+    
+    try:
+      # set the left child for current node
+      json_store[key]['left'] = {left_no_underscore: json_store[left]}
+      del json_store[left]
+    except:
+      # if child is None remove the underscore
+      json_store[key]['left'] = left[left.find('_') + 1:]
+      pass
+    
+    try:
+      # set the right child for current node
+      json_store[key]['right'] = {right_no_underscore: json_store[right]}
+      del json_store[right]
+    except:
+      # if child is None remove the underscore
+      json_store[key]['right'] = right[right.find('_') + 1:]
+      pass
+  
+  return json_store
+
+
+def model(tree: Dict) -> bool:
+  root = list(tree.keys())[0]
+  if tree[root]['left'] == tree[root]['right']:
     return True  
   return False
 
@@ -67,6 +77,7 @@ if __name__ == '__main__':
     [1,2,2,3,4,4,3]
   ]
   for i in inputs:
-    print(i)
-    i = list_to_treenode(i)
-    #print(model(i))
+    print(f'input: {i}')
+    i = list_to_tree(i)
+    print(f'tree: {i}')
+    print(f'symmetric: {model(i)}','\n')
