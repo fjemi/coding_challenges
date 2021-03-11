@@ -1,0 +1,17 @@
+challenge: Count Primes
+description: Count the number of prime numbers less than a non-negative number, `n`.
+version: 1.0
+language: go
+function:
+  count_primes:
+    doc_string: counts prime numbers from 0 to n
+    args:
+      n:
+        type: int
+    test:
+      - input: 1
+        output: 0
+      - input: 1
+        output: 0
+      - input: 8
+        output: 4
